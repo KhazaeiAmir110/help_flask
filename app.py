@@ -21,3 +21,7 @@ def about():
         'active_about': 'active',
     }
     return render_template('about.html', **context)
+
+
+if __name__ == '__main__':
+    app.run(debug=True,)
