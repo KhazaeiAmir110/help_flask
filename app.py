@@ -6,6 +6,17 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///simple.db"
 db = SQLAlchemy(app)
 
 
+class SimpleModel(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    data = db.Column(db.DateTime(timezone=True))
+
+    def __repr__(self):
+        return f'simple :\n id: {self.id} \n name : {self.name} \n text : {self.description} \n ' \
+               f'time : {self.data} '
+
+
 @app.route('/')
 @app.route('/home')
 def hello_world():
