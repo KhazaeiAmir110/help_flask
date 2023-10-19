@@ -6,9 +6,18 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/home')
 def hello_world():
-    return render_template('home.html', name='amir', title='home')
+    context = {
+        'name': 'amir',
+        'title': 'home',
+        'active_home': 'active',
+    }
+    return render_template('home.html', **context)
 
 
 @app.route('/about')
 def about():
-    return render_template('about.html', title='about')
+    context = {
+        'title': 'about',
+        'active_about': 'active',
+    }
+    return render_template('about.html', **context)
