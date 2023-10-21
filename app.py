@@ -1,6 +1,24 @@
 from flask import Flask, render_template, redirect, url_for, request
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydb.sqlite3'
+db = SQLAlchemy(app)
+
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.column(db.String(50))
+    email = db.column(db.String(100))
+    password = db.Column(db.String(50))
+
+    def __init__(self, username, email, password):
+        self.username = username
+        self.email = email
+        self.password = password
+
+    def __repr__(self):
+        return f'{self.username}'
 
 
 @app.route('/<string:name>')  # address type one
