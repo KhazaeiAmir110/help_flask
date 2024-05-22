@@ -11,7 +11,7 @@ def Home():
     if request.args.get('search'):
         pass
     elif request.args.get('category_id'):
-        pass
+        articles = fun.get_article_with_category_id(category_id=request.args.get('category_id'))
     else:
         articles = fun.get_articles()
 

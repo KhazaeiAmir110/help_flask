@@ -43,3 +43,9 @@ def get_articles():
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM articles ORDER BY date DESC")
     return cursor.fetchall()
+
+def get_article_with_category_id(category_id):
+    conn = db_connect()
+    cursor = conn.cursor()
+    cursor.execute(f"SELECT * FROM articles WHERE id = '{category_id}'")
+    return cursor.fetchall()
