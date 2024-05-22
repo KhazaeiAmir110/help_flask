@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, abort
 
 import conf.config as conf
 import conf.functions as fun
@@ -24,6 +24,8 @@ def Home():
 
 @app.route('/single/<int:id>')
 def Article(id):
+    if not fun.get_article_by_id(id):
+        abort(404, 'Article not found')
     return render_template(
         'single.html',
         article = fun.get_article_by_id(id)
