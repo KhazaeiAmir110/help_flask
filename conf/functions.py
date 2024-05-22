@@ -19,7 +19,9 @@ def create_table():
             CREATE TABLE IF NOT EXISTS articles (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL,
+                image_url TEXT NOT NULL,
                 description TEXT NOT NULL,
+                category_id INTEGER NOT NULL,
                 date DATE
             );
         """)
@@ -34,4 +36,10 @@ def get_categories():
     conn = db_connect()
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM categories")
+    return cursor.fetchall()
+
+def get_articles():
+    conn = db_connect()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM articles ORDER BY date DESC")
     return cursor.fetchall()
