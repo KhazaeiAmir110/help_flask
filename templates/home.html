@@ -53,6 +53,9 @@
                     <div class="row">
                         <div class="col-lg-6" style="display:flex; width: 100%; gap: 30px">
                             <!-- Blog post-->
+                        {% if not articles %}
+                            <b>Not found!!!!</b>
+                        {% else %}
                             {% for article in articles %}
                             	<div class="card mb-4">
                                 <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
@@ -64,6 +67,8 @@
                                 </div>
                             </div>
                             {% endfor %}
+                        {% endif %}
+
                         </div>
                     </div>
                     <!-- Pagination-->
@@ -87,8 +92,10 @@
                         <div class="card-header">Search</div>
                         <div class="card-body">
                             <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                                <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+                                <form method="GET">
+                                    <input name="search" class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+                                    <button class="btn btn-primary" id="button-search" type="submit">Go!</button>
+                                </form>
                             </div>
                         </div>
                     </div>

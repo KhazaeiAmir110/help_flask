@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route('/')
 def Home():
     if request.args.get('search'):
-        pass
+        articles = fun.get_article_with_search(searched_word=request.args.get('search'))
     elif request.args.get('category_id'):
         articles = fun.get_article_with_category_id(category_id=request.args.get('category_id'))
     else:

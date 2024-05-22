@@ -49,3 +49,16 @@ def get_article_with_category_id(category_id):
     cursor = conn.cursor()
     cursor.execute(f"SELECT * FROM articles WHERE id = '{category_id}'")
     return cursor.fetchall()
+
+def get_article_with_search(searched_word):
+    conn = db_connect()
+    cursor = conn.cursor()
+    cursor.execute(
+        f"SELECT * FROM articles WHERE name LIKE '%{searched_word}%' OR description LIKE '%{searched_word}%'"
+    )
+    results = cursor.fetchall()
+
+    if not results:
+        return None
+    else:
+        return results
