@@ -26,9 +26,11 @@ def Home():
 def Article(id):
     if not fun.get_article_by_id(id):
         abort(404, 'Article not found')
+    article = fun.get_article_by_id(id)
     return render_template(
         'single.html',
-        article = fun.get_article_by_id(id)
+        article = article,
+        article_category = fun.get_categories_by_id(article[4])
     )
 
 if __name__ == '__main__':

@@ -38,6 +38,12 @@ def get_categories():
     cursor.execute("SELECT * FROM categories")
     return cursor.fetchall()
 
+def get_categories_by_id(id):
+    conn = db_connect()
+    cursor = conn.cursor()
+    cursor.execute(f"SELECT * FROM categories WHERE id = '{id}'")
+    return cursor.fetchone()
+
 def get_articles():
     conn = db_connect()
     cursor = conn.cursor()
