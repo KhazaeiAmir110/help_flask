@@ -62,3 +62,16 @@ def get_article_with_search(searched_word):
         return None
     else:
         return results
+
+
+def get_article_by_id(article_id):
+    conn = db_connect()
+    cursor = conn.cursor()
+    cursor.execute(
+        f"SELECT * FROM articles WHERE id = '{article_id}'"
+    )
+    result = cursor.fetchone()
+    if not result:
+        return None
+    else:
+        return result

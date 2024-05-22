@@ -22,5 +22,12 @@ def Home():
         articles = articles
     )
 
+@app.route('/single/<int:id>')
+def Article(id):
+    return render_template(
+        'single.html',
+        article = fun.get_article_by_id(id)
+    )
+
 if __name__ == '__main__':
     app.run()
