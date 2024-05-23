@@ -1,5 +1,7 @@
-from flask import Flask, render_template, request, abort, session
-from flask_login import LoginManager, login_user, logout_user, login_required, current_user, UserMixin
+from flask import (
+    Flask, render_template, request, abort, session, url_for, flash, redirect)
+from flask_login import (
+    LoginManager, login_user, logout_user, login_required, current_user, UserMixin)
 
 from conf import config as conf
 from conf import functions as fun
@@ -57,7 +59,30 @@ user = User(0)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    pass
+    if current_user.is_authenticated:
+        return url_for('dashboard')
+    elif request.method == 'POST':
+        if (not request.form['username']) or (not request.form['password']):
+            flash('Invalid username or password')
+            return redirect(url_for('login'))
+        elif (request.form['username']!= conf.ADMIN_USERNAME or request.form['password']!= conf.ADMIN_PASSWORD):
+            flash('Invalid username or password')
+            return redirect(url_for('login'))
+        login_user(user)
+        flash('You are now logged in')
+        return redirect(url_for('dashboard'))
+
+    elif session.get():
+        pass
+
+
+@app.route('/dashboard')
+def dashboard():
+    return 'Hello World!'
+
+@login_manager.user_loader
+def load_user(id):
+    return User(id)
 
 
 if __name__ == '__main__':
