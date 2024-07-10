@@ -22,7 +22,7 @@ class Text(db.Model):
 
 @app.route('/')
 def home():
-    messages = Text.query.filter(Text.id == 1).first()
+    messages = Text.query.all()
     context = {
         'message': messages,
         'name': 'amir'
@@ -38,6 +38,13 @@ def about():
         'message': messages
     }
     return render_template('about.html', context=context)
+
+
+@app.route('/<id>')
+def detail(id):
+    post = Text.query.get(id)
+    return render_template('detail.html', post=post)
+
 
 
 if __name__ == '__main__':
