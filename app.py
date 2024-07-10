@@ -22,8 +22,9 @@ class Text(db.Model):
 
 @app.route('/')
 def home():
+    messages = Text.query.filter(Text.id == 1).first()
     context = {
-        'message': 'Hello World!',
+        'message': messages,
         'name': 'amir'
     }
     return render_template('home.html', context=context, title='Home')
@@ -31,9 +32,10 @@ def home():
 
 @app.route('/about')
 def about():
+    messages = Text.query.filter(Text.id == 2).first()
     context = {
         'title': 'About',
-        'message': 'This is an About!'
+        'message': messages
     }
     return render_template('about.html', context=context)
 
