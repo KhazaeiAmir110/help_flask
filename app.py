@@ -12,5 +12,14 @@ def home():
     return render_template('home.html', context=context, title='Home')
 
 
+@app.route('/about')
+def about():
+    context = {
+        'title': 'About',
+        'message': 'This is an About!'
+    }
+    return render_template('about.html', context=context)
+
+
 if __name__ == '__main__':
     app.run()
