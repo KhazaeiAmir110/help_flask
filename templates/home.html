@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-</head>
-<body>
-    {{ context.message }}
-    <p>Hellow {{ context.name }}</p>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block main %}
+<h1>Hellow {{ context.name }}</h1>
+{% endblock %}
