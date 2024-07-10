@@ -46,6 +46,5 @@ def detail(id):
     return render_template('detail.html', post=post)
 
 
-
 if __name__ == '__main__':
     app.run(debug=True)
