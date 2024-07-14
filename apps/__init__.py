@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
 from apps.users.routes import blueprint as users_blueprint
 from apps.posts.routes import blueprint as posts_blueprint
@@ -13,3 +14,7 @@ app.register_blueprint(posts_blueprint)
 
 # config
 app.config.from_object('base.config.DevelopmentConfig')
+
+# db
+db = SQLAlchemy(app)
+db.create_all()
