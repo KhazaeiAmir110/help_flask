@@ -20,6 +20,7 @@ register_blueprints(app)
 app.config.from_object('base.config.DevelopmentConfig')
 
 # db
+app.app_context().push()
 db = SQLAlchemy(app)
 db.create_all()
 
