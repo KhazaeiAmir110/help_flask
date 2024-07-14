@@ -1,10 +1,10 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
 from apps.users.routes import blueprint as users_blueprint
 from apps.posts.routes import blueprint as posts_blueprint
 from base import exceptions as app_exception
+from core.extensions import db
 
 app = Flask(__name__)
 
@@ -22,7 +22,7 @@ app.config.from_object('base.config.DevelopmentConfig')
 
 # db
 app.app_context().push()
-db = SQLAlchemy(app)
+db.init_app(app)
 
 from apps.users.models import User
 
